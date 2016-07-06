@@ -155,4 +155,4 @@ let healerSet = {
   weapon,
 };
 
-module.exports = healerSet;
+export default healerSet;

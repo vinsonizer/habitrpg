@@ -1,14 +1,10 @@
-import t from './translation';
+let t = require('./translation.js');
 
-const NUMBER_OF_QUESTIONS = 12;
+let NUMBER_OF_QUESTIONS = 12;
 
-let faq = {
-  questions: [],
-  stillNeedHelp: {
-    ios: t('iosFaqStillNeedHelp'),
-    web: t('webFaqStillNeedHelp'),
-  },
-};
+let faq = {};
+
+faq.questions = [];
 
 for (let i = 0; i <= NUMBER_OF_QUESTIONS; i++) {
   let question = {
@@ -19,5 +15,10 @@ for (let i = 0; i <= NUMBER_OF_QUESTIONS; i++) {
 
   faq.questions.push(question);
 }
+
+faq.stillNeedHelp = {
+  ios: t('iosFaqStillNeedHelp'),
+  web: t('webFaqStillNeedHelp'),
+};
 
 module.exports = faq;

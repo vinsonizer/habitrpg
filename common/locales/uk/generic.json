@@ -33,7 +33,7 @@
     "italics": "*курсив*",
     "bold": "**Жирний**",
     "strikethrough": "~~Закреслено~~",
-    "emojiExample": ":smile:",
+    "emojiExample": ":смайлик:",
     "markdownLinkEx": "[Habitica - це круто!](https://habitica.com)",
     "markdownImageEx": "![mandatory alt text](https://habitica.com/cake.png \"optional mouseover title\")",
     "unorderedListHTML": "+ First item<br>+ Second item<br>+ Third item",
@@ -98,7 +98,7 @@
     "buyThis": "Придбати <%= text %> за <%= price %> з Ваших <%= gems %> самоцвітів?",
     "noReachServer": "Наразі сервер недоступний, спробуйте пізніше",
     "errorUpCase": "ПОМИЛКА:",
-    "newPassSent": "If we have your email on file, a new password has been sent to your email.",
+    "newPassSent": "Новий пароль надіслано.",
     "serverUnreach": "Наразі сервер недоступний.",
     "requestError": "Yikes, an error occurred! <strong>Please reload the page,</strong> your last action may not have been saved correctly.",
     "seeConsole": "If the error persists, please report it at Help > Report a Bug. If you're familiar with your browser's console, please include any error messages.",
@@ -137,8 +137,6 @@
     "achievementStressbeastText": "Helped defeat the Abominable Stressbeast during the 2014 Winter Wonderland Event!",
     "achievementBurnout": "Savior of the Flourishing Fields",
     "achievementBurnoutText": "Helped defeat Burnout and restore the Exhaust Spirits during the 2015 Fall Festival Event!",
-    "achievementBewilder": "Savior of Mistiflying",
-    "achievementBewilderText": "Helped defeat the Be-Wilder during the 2016 Spring Fling Event!",
     "checkOutProgress": "Check out my progress in Habitica!",
     "cardReceived": "Отримав листівку!",
     "cardReceivedFrom": "<%= cardType %> from <%= userName %>",
@@ -177,6 +175,5 @@
     "hatchPetShare": "I hatched a new pet by completing my real-life tasks!",
     "raisePetShare": "I raised a pet into a mount by completing my real-life tasks!",
     "wonChallengeShare": "I won a challenge in Habitica!",
-    "achievementShare": "I earned a new achievement in Habitica!",
-    "orderBy": "Order By <%= item %>"
+    "achievementShare": "I earned a new achievement in Habitica!"
 }

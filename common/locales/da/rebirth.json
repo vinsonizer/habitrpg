@@ -5,14 +5,14 @@
     "rebirthStartOver": "Genfødsel genstarter din karakter fra Niveau 1.",
     "rebirthAdvList1": "Du vender tilbage til fuldt Liv.",
     "rebirthAdvList2": "Du har ingen Erfaring, Guld eller Udstyr (med undtagelse af gratis ting såsom Mystiske Varer)",
-    "rebirthAdvList3": "Your Habits, Dailies, and To-Dos reset to yellow, and streaks reset, except for challenge tasks.",
+    "rebirthAdvList3": "Dine Vaner, Daglige og To-Dos nulstilles til gul, og striber nulstilles.",
     "rebirthAdvList4": "Din startklasse er Kriger, indtil du kan vælge en ny Klasse.",
     "rebirthInherit": "Din nye karakter arver nogle få ting fra sin forgænger:",
     "rebirthInList1": "Opgaver, historik og indstillinger forbliver.",
     "rebirthInList2": "Udfordringer, Selskabs- og Klanmedlemskaber forbliver.",
     "rebirthInList3": "Ædelsten, støttetrin og bidragyder-niveauer forbliver.",
     "rebirthInList4": "Objekter opnået med ædelsten eller drops (såsom kæledyr og ridedyr) forbliver, omend du ikke kan bruge dem før du låser op for dem igen.",
-    "rebirthInList5": "Særudgaver af udstyr du har købt, kan du købe igen, også selvom deres tilgængelighedsperiode er udløbet. For at genkøbe klassespecifikt udstyr skal du først skifte til den korrekte klasse.",
+    "rebirthInList5": "Limited edition equipment you've purchased can be repurchased, even if its event has ended. To repurchase class-specific equipment, you must first change to the correct class.",
     "rebirthEarnAchievement": "Du får også en Præstation for at begynde et nyt eventyr!",
     "beReborn": "Bliv Genfødt",
     "rebirthAchievement": "Du har begyndt et nyt eventyr! Dette er Genfødsel nummer <%= number %> for dig, og det højeste Niveau du har opnået er <%= level %>. Hvis du vil slå denne Præstation skal du først begynde et nyt eventyr, når du har opnået et endnu højere Niveau!",
@@ -24,6 +24,5 @@
     "rebirthPop": "Begynd en ny karakter på Niveau 1 mens du beholder præstationer, samlerobjekter, og opgaver med historik.",
     "rebirthName": "Genfødselskugle",
     "reborn": "Genfødt, højeste Niveau <%= reLevel %>",
-    "confirmReborn": "Er du sikker?",
-    "rebirthComplete": "You have been reborn!"
+    "confirmReborn": "Er du sikker?"
 }

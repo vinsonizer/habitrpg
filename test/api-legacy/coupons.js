@@ -1,8 +1,8 @@
 var Coupon, app, makeSudoUser;
 
-app = require("../../website/server/server");
+app = require("../../website/src/server");
 
-Coupon = require("../../website/server/models/coupon").model;
+Coupon = require("../../website/src/models/coupon").model;
 
 makeSudoUser = function(usr, cb) {
   return registerNewUser(function() {
@@ -40,29 +40,26 @@ describe("Coupons", function() {
   describe("POST /api/v2/coupons/generate/:event", function() {
     context("while sudo user", function() {
       before(function(done) {
-        makeSudoUser(user, done);
+        return makeSudoUser(user, done);
       });
-
-      it("generates coupons", function(done) {
+      return it("generates coupons", function(done) {
         var queries;
         queries = '?count=10';
-
-        request.post(baseURL + '/coupons/generate/wondercon' + queries).end(function(err, res) {
+        return request.post(baseURL + '/coupons/generate/wondercon' + queries).end(function(err, res) {
           expectCode(res, 200);
-          Coupon.find({
+          return Coupon.find({
             event: 'wondercon'
           }, function(err, _coupons) {
             coupons = _coupons;
             expect(coupons.length).to.equal(10);
             _(coupons).each(function(c) {
-              expect(c.event).to.equal('wondercon');
+              return expect(c.event).to.equal('wondercon');
             }).value();
-            done();
+            return done();
           });
         });
       });
     });
-
     return context("while regular user", function() {
       before(function(done) {
         return registerNewUser(done, true);

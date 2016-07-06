@@ -152,4 +152,4 @@ let warriorSet = {
   weapon,
 };
 
-module.exports = warriorSet;
+export default warriorSet;

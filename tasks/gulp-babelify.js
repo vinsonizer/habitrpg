@@ -8,7 +8,7 @@ import babel from 'babelify';
 
 gulp.task('browserify', function () {
   let bundler = browserify({
-    entries: './common/browserify.js',
+    entries: './common/index.js',
     debug: true,
     transform: [[babel, { compact: false }]],
   });

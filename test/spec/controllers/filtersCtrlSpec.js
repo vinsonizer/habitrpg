@@ -1,26 +1,14 @@
 'use strict';
 
 describe('Filters Controller', function() {
-  var scope, user, userService;
+  var scope, user;
 
-  beforeEach(function () {
-    module(function($provide) {
-      var mockWindow = {href: '', alert: sandbox.spy(), location: {search: '', pathname: '', href: ''}};
-
-      $provide.value('$window', mockWindow);
-    });
-
-    inject(function($rootScope, $controller, Shared, User) {
-      user = specHelper.newUser();
-      Shared.wrap(user);
-      scope = $rootScope.$new();
-      // user.filters = {};
-      User.setUser(user);
-      User.user.filters = {};
-      userService = User;
-      $controller('FiltersCtrl', {$scope: scope, User: User});
-    })
-  });
+  beforeEach(inject(function($rootScope, $controller, Shared) {
+    user = specHelper.newUser();
+    Shared.wrap(user);
+    scope = $rootScope.$new();
+    $controller('FiltersCtrl', {$scope: scope, User: {user: user}});
+  }));
 
   describe('tags', function(){
     it('creates a tag', function(){
@@ -34,9 +22,9 @@ describe('Filters Controller', function() {
     it('toggles tag filtering', inject(function(Shared){
       var tag = {id: Shared.uuid(), name: 'myTag'};
       scope.toggleFilter(tag);
-      expect(userService.user.filters[tag.id]).to.eql(true);
+      expect(user.filters[tag.id]).to.eql(true);
       scope.toggleFilter(tag);
-      expect(userService.user.filters[tag.id]).to.not.eql(true);
+      expect(user.filters[tag.id]).to.eql(false);
     }));
   });
 
@@ -45,7 +33,7 @@ describe('Filters Controller', function() {
       scope.filterQuery = 'task';
       scope.updateTaskFilter();
 
-      expect(userService.user.filterQuery).to.eql(scope.filterQuery);
+      expect(user.filterQuery).to.eql(scope.filterQuery);
     });
   });
 });

@@ -138,4 +138,4 @@ let wizardSet = {
   weapon,
 };
 
-module.exports = wizardSet;
+export default wizardSet;
