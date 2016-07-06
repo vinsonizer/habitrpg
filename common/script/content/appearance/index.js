@@ -3,7 +3,6 @@ import shirts from './shirt.js';
 import skins from './skin.js';
 import sizes from './size.js';
 import backgrounds from './backgrounds.js';
-import chairs from './chair.js';
 import {forOwn, clone} from 'lodash';
 
 let reorderedBgs = {};
@@ -26,7 +25,6 @@ let appearances = {
   shirt: shirts,
   size: sizes,
   skin: skins,
-  chair: chairs,
   background: reorderedBgs,
 };
 

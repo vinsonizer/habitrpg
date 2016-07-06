@@ -59,4 +59,4 @@ let wonderconSet = {
   eyewearSpecialWonderconBlack,
 };
 
-module.exports = wonderconSet;
+export default wonderconSet;

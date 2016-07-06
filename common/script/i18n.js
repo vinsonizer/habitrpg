@@ -60,4 +60,4 @@ function t (stringName) {
   }
 }
 
-module.exports = i18n;
+export default i18n;

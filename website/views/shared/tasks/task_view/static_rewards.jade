@@ -1,6 +1,4 @@
-mixin reward(item, action)
-  - action = action || "buy(" + item + ")"
-
+mixin reward(item)
   li.task.reward-item(popover-trigger='mouseenter', popover-placement='top', popover='{{::#{item}.notes()}}')&attributes(attributes)
     // right-hand side control buttons
     .task-meta-controls
@@ -10,8 +8,8 @@ mixin reward(item, action)
     .task-controls.task-primary
       input.reward.visuallyhidden(
         type='checkbox',
-        ui-keypress='{13:"#{action}"}')
-      a.money.btn-buy.item-btn(ng-class='::{highValue: #{item}.value >= 1000}', ng-click='::#{action}')
+        ui-keypress='{13:"buy(#{item})"}')
+      a.money.btn-buy.item-btn(ng-class='::{highValue: #{item}.value >= 1000}', ng-click='::buy(#{item})')
         span.shop_gold
         span.reward-cost {{::#{item}.value}}
     // main content
@@ -21,5 +19,5 @@ mixin reward(item, action)
 ul.items.rewards(ng-if='main && list.type=="reward"')
   +reward('item')(ng-repeat='item in itemStore')
   +reward('healthPotion')
-  +reward('armoire', 'buyArmoire()')(ng-if='user.flags.armoireEnabled',
+  +reward('armoire')(ng-if='user.flags.armoireEnabled',
     popover='{{armoire.notes(user, armoireCount(user.items.gear.owned))}}')

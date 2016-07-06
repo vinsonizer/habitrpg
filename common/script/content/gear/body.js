@@ -7,5 +7,5 @@ let body = {
   special: specialBody,
 };
 
-module.exports = body;
+export default body;
 

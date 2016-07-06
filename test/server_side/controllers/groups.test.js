@@ -3,12 +3,12 @@ var chai = require("chai");
 chai.use(require("sinon-chai"));
 var expect = chai.expect;
 
-var Bluebird = require('bluebird');
-var Group = require('../../../website/server/models/group').model;
-var groupsController = require('../../../website/server/controllers/api-v2/groups');
+var Q = require('q');
+var Group = require('../../../website/src/models/group').model;
+var groupsController = require('../../../website/src/controllers/api-v2/groups');
 
 describe('Groups Controller', function() {
-  var utils = require('../../../website/server/libs/api-v2/utils');
+  var utils = require('../../../website/src/libs/utils');
 
   describe('#invite', function() {
     var res, req, user, group;
@@ -40,7 +40,7 @@ describe('Groups Controller', function() {
           user: user
         },
         json: sinon.stub(),
-        sendStatus: sinon.stub()
+        send: sinon.stub()
       };
 
       req = {
@@ -69,7 +69,7 @@ describe('Groups Controller', function() {
     });
 
     context('emails', function() {
-      var EmailUnsubscription = require('../../../website/server/models/emailUnsubscription').model;
+      var EmailUnsubscription = require('../../../website/src/models/emailUnsubscription').model;
       var execStub, selectStub;
 
       beforeEach(function() {
@@ -111,7 +111,8 @@ describe('Groups Controller', function() {
           'invite-friend',
           [
             { name: 'LINK', content: '?partyInvite=http://link.com' },
-            { name: 'INVITER', content: 'inviter' }
+            { name: 'INVITER', content: 'inviter' },
+            { name: 'REPLY_TO_ADDRESS', content: 'inviter@example.com' }
           ]
         );
       });
@@ -166,7 +167,7 @@ describe('Groups Controller', function() {
           user: user
         },
         json: sinon.stub(),
-        sendStatus: sinon.stub()
+        send: sinon.stub()
       };
 
       req = {
@@ -278,7 +279,7 @@ describe('Groups Controller', function() {
               progress : {
                   up : 50,
                   down : 0,
-                  collectedItems : {}
+                  collect : {}
               },
               completed : null,
               RSVPNeeded : false
@@ -294,14 +295,14 @@ describe('Groups Controller', function() {
           user: user
         },
         json: sinon.stub(),
-        sendStatus: sinon.stub()
+        send: sinon.stub()
       };
 
       req = { };
     });
 
     afterEach(function() {
-      Promise.all.restore();
+      Q.all.restore();
     });
 
     context('error conditions', function() {
@@ -342,7 +343,7 @@ describe('Groups Controller', function() {
       });
 
       it('sends 500 if group cannot save', function() {
-        Promise.all.returns({
+        Q.all.returns({
           done: sinon.stub().callsArgWith(1, {err: 'save error'})
         });
         var nextSpy = sinon.spy();
@@ -368,7 +369,6 @@ describe('Groups Controller', function() {
         user.party.quest.progress = {
           up: 100,
           down: 32,
-          collectedItems: 16,
           collect: {
             foo: 12,
             bar: 4
@@ -381,15 +381,15 @@ describe('Groups Controller', function() {
         expect(user.party.quest.progress).to.eql({
           up: 0,
           down: 0,
-          collectedItems: 0,
+          collect: {}
         });
       });
 
       it('sends back 204 on success', function() {
         groupsController.questLeave(req, res);
 
-        expect(res.sendStatus).to.be.calledOnce;
-        expect(res.sendStatus).to.be.calledWith(204);
+        expect(res.send).to.be.calledOnce;
+        expect(res.send).to.be.calledWith(204);
       });
     });
   });
@@ -409,7 +409,7 @@ describe('Groups Controller', function() {
           user: user,
           group: group
         },
-        sendStatus: sinon.stub()
+        send: sinon.stub()
       };
       req = {
         query: {

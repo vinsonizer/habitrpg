@@ -7,7 +7,7 @@ describe('userServices', function() {
 
   beforeEach(function(){
     module(function($provide){
-      $window = {href: '', alert: sandbox.spy(), location: {search: '', pathname: '', href: ''}};
+      $window = {href: '', alert: sandbox.spy(), location: {search: '', pathname: ''}};
       $provide.value('$window', $window);
     });
 
@@ -31,15 +31,17 @@ describe('userServices', function() {
   it('saves user data to local storage', function(){
     user.save();
     var settings = JSON.parse(localStorage[STORAGE_SETTINGS_ID]);
+    var user_id = JSON.parse(localStorage[STORAGE_USER_ID]);
     expect(settings).to.eql(user.settings);
+    expect(user_id).to.eql(user.user);
   });
 
-  xit('alerts when not authenticated', function(){
+  it('alerts when not authenticated', function(){
     user.log();
     expect($window.alert).to.have.been.calledWith("Not authenticated, can't sync, go to settings first.");
   });
 
-  xit('puts items in que queue', function(){
+  it('puts items in que queue', function(){
     user.log({});
     //TODO where does that null comes from?
     expect(user.settings.sync.queue).to.eql([null, {}]);

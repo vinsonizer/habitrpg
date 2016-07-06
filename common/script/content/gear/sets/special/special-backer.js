@@ -90,4 +90,4 @@ let backerSet = {
   weaponSpecial3,
 };
 
-module.exports = backerSet;
+export default backerSet;

@@ -77,4 +77,4 @@ let baseSet = {
   weapon,
 };
 
-module.exports = baseSet;
+export default baseSet;

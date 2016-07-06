@@ -1,11 +1,9 @@
-'use strict';
+module.exports = require('./script/index');
+var _ = require('lodash');
+var moment = require('moment');
 
-let pathToCommon;
-
-if (process.env.NODE_ENV === 'production') { // eslint-disable-line no-process-env
-  pathToCommon = './transpiled-babel/index';
-} else {
-  pathToCommon = './script/index';
+if (typeof window !== 'undefined') {
+  window.habitrpgShared = module.exports;
+  window._ = _;
+  window.moment = moment;
 }
-
-module.exports = require(pathToCommon);

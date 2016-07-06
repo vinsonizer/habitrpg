@@ -5,17 +5,10 @@ describe('Inventory Controller', function() {
 
   beforeEach(function() {
     module(function($provide) {
-      var mockWindow = {
-        confirm: function(msg) {
-          return true;
-        },
-        location: {search: '', pathname: '', href: ''},
-      };
-
-      $provide.value('$window', mockWindow);
+      $provide.value('User', {});
     });
 
-    inject(function($rootScope, $controller, Shared, User, $location, $window) {
+    inject(function($rootScope, $controller, Shared){
       user = specHelper.newUser({
         balance: 4,
         items: {
@@ -32,17 +25,18 @@ describe('Inventory Controller', function() {
       });
 
       Shared.wrap(user);
-
+      var mockWindow = {
+        confirm: function(msg){
+          return true;
+        }
+      };
       scope = $rootScope.$new();
       rootScope = $rootScope;
 
-      User.user = user;
-      User.setUser(user);
-
       // Load RootCtrl to ensure shared behaviors are loaded
-      $controller('RootCtrl',  {$scope: scope, User: User});
+      $controller('RootCtrl',  {$scope: scope, User: {user: user}, $window: mockWindow});
 
-      ctrl = $controller('InventoryCtrl', {$scope: scope, User: User});
+      ctrl = $controller('InventoryCtrl', {$scope: scope, User: {user: user}, $window: mockWindow});
     });
   });
 
@@ -94,16 +88,14 @@ describe('Inventory Controller', function() {
       expect(rootScope.openModal).to.have.been.calledWith('hatchPet');
     });
 
-    //@TODO: Fix Common hatch
-    xit('does not show modal if user tries to hatch a pet they own', function(){
+    it('does not show modal if user tries to hatch a pet they own', function(){
       user.items.pets['Cactus-Base'] = 5;
       scope.chooseEgg('Cactus');
       scope.choosePotion('Base');
       expect(rootScope.openModal).to.not.have.been.called;
     });
 
-    //@TODO: Fix Common hatch
-    xit('does not show modal if user tries to hatch a premium quest pet', function(){
+    it('does not show modal if user tries to hatch a premium quest pet', function(){
       user.items.eggs = {Snake: 1};
       user.items.hatchingPotions = {Peppermint: 1};
       scope.chooseEgg('Snake');

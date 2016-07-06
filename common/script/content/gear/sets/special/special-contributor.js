@@ -76,4 +76,4 @@ let contributorSet = {
   weaponSpecialCritical,
 };
 
-module.exports = contributorSet;
+export default contributorSet;
