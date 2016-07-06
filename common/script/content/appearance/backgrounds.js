@@ -1,5 +1,5 @@
 import {forOwn} from 'lodash';
-let t = require('../translation.js');
+import t from '../translation';
 
 /* eslint-disable camelcase */
 let backgrounds = {
@@ -297,6 +297,76 @@ let backgrounds = {
       notes: t('backgroundGrandStaircaseNotes'),
     },
   },
+  backgrounds032016: {
+    deep_mine: {
+      text: t('backgroundDeepMineText'),
+      notes: t('backgroundDeepMineNotes'),
+    },
+    rainforest: {
+      text: t('backgroundRainforestText'),
+      notes: t('backgroundRainforestNotes'),
+    },
+    stone_circle: {
+      text: t('backgroundStoneCircleText'),
+      notes: t('backgroundStoneCircleNotes'),
+    },
+  },
+  backgrounds042016: {
+    archery_range: {
+      text: t('backgroundArcheryRangeText'),
+      notes: t('backgroundArcheryRangeNotes'),
+    },
+    giant_florals: {
+      text: t('backgroundGiantFlowersText'),
+      notes: t('backgroundGiantFlowersNotes'),
+    },
+    rainbows_end: {
+      text: t('backgroundRainbowsEndText'),
+      notes: t('backgroundRainbowsEndNotes'),
+    },
+  },
+  backgrounds052016: {
+    beehive: {
+      text: t('backgroundBeehiveText'),
+      notes: t('backgroundBeehiveNotes'),
+    },
+    gazebo: {
+      text: t('backgroundGazeboText'),
+      notes: t('backgroundGazeboNotes'),
+    },
+    tree_roots: {
+      text: t('backgroundTreeRootsText'),
+      notes: t('backgroundTreeRootsNotes'),
+    },
+  },
+  backgrounds062016: {
+    lighthouse_shore: {
+      text: t('backgroundLighthouseShoreText'),
+      notes: t('backgroundLighthouseShoreNotes'),
+    },
+    lilypad: {
+      text: t('backgroundLilypadText'),
+      notes: t('backgroundLilypadNotes'),
+    },
+    waterfall_rock: {
+      text: t('backgroundWaterfallRockText'),
+      notes: t('backgroundWaterfallRockNotes'),
+    },
+  },
+  backgrounds072016: {
+    aquarium: {
+      text: t('backgroundAquariumText'),
+      notes: t('backgroundAquariumNotes'),
+    },
+    dilatory_castle: {
+      text: t('backgroundDilatoryCastleText'),
+      notes: t('backgroundDilatoryCastleNotes'),
+    },
+    deep_sea: {
+      text: t('backgroundDeepSeaText'),
+      notes: t('backgroundDeepSeaNotes'),
+    },
+  },
 };
 /* eslint-enable quote-props */
 
@@ -306,4 +376,4 @@ forOwn(backgrounds, function prefillBackgroundSet (value) {
   });
 });
 
-export default backgrounds;
+module.exports = backgrounds;

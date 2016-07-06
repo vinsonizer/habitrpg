@@ -1,5 +1,5 @@
 import { each } from 'lodash';
-let t = require('./translation.js');
+import t from './translation';
 
 let mysterySets = {
   201402: {
@@ -98,6 +98,26 @@ let mysterySets = {
     start: '2016-01-26',
     end: '2016-02-02',
   },
+  201602: {
+    start: '2016-02-24',
+    end: '2016-03-02',
+  },
+  201603: {
+    start: '2016-03-24',
+    end: '2016-04-02',
+  },
+  201604: {
+    start: '2016-04-25',
+    end: '2016-05-02',
+  },
+  201605: {
+    start: '2016-05-25',
+    end: '2016-06-02',
+  },
+  201606: {
+    start: '2016-06-23',
+    end: '2016-07-02',
+  },
   301404: {
     start: '3014-03-24',
     end: '3014-04-02',
@@ -118,4 +138,4 @@ each(mysterySets, (value, key) => {
   value.text = t(`mysterySet${key}`);
 });
 
-export default mysterySets;
+module.exports = mysterySets;

@@ -1,9 +1,9 @@
-import { exec } from 'child_process';
-import psTree   from 'ps-tree';
-import nconf    from 'nconf';
-import net      from 'net';
-import Q        from 'q';
-import { post } from 'superagent';
+import { exec }                   from 'child_process';
+import psTree                     from 'ps-tree';
+import nconf                      from 'nconf';
+import net                        from 'net';
+import Bluebird                   from 'bluebird';
+import { post }                   from 'superagent';
 import { sync as glob }           from 'glob';
 import Mocha                      from 'mocha';
 import { resolve }                from 'path';
@@ -20,7 +20,7 @@ export var conf = nconf;
  * its tasks.
  */
 export function kill(proc) {
-  ((pid) => {
+  let killProcess = (pid) => {
     psTree(pid, (_, pids) => {
       if(pids.length) {
         pids.forEach(kill); return
@@ -32,7 +32,9 @@ export function kill(proc) {
       }
       catch(e) { console.log(e) }
     });
-  }(proc.PID || proc.pid));
+  }
+
+  killProcess(proc.PID || proc.pid);
 };
 
 /*
@@ -41,25 +43,24 @@ export function kill(proc) {
  * has fully spun up. Optionally provide a maximum number of seconds to wait
  * before failing.
  */
-export function awaitPort(port, max=60) {
-  let socket, timeout, interval;
-  let deferred = Q.defer();
+export function awaitPort (port, max=60) {
+  return new Bluebird((reject, resolve) => {
+    let socket, timeout, interval;
 
-  timeout = setTimeout(() => {
-    clearInterval(interval);
-    deferred.reject(`Timed out after ${max} seconds`);
-  }, max * 1000);
-
-  interval = setInterval(() => {
-    socket = net.connect({port: port}, () => {
+    timeout = setTimeout(() => {
       clearInterval(interval);
-      clearTimeout(timeout);
-      socket.destroy();
-      deferred.resolve();
-    }).on('error', () => { socket.destroy });
-  }, 1000);
+      reject(`Timed out after ${max} seconds`);
+    }, max * 1000);
 
-  return deferred.promise
+    interval = setInterval(() => {
+      socket = net.connect({port: port}, () => {
+        clearInterval(interval);
+        clearTimeout(timeout);
+        socket.destroy();
+        resolve();
+      }).on('error', () => { socket.destroy });
+    }, 1000);
+  });
 };
 
 /*

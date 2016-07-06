@@ -11,6 +11,8 @@ RUN apt-get install -y \
     build-essential \
     curl \
     git \
+    libfontconfig1 \
+    libfreetype6 \
     libkrb5-dev \
     python
 
@@ -23,6 +25,7 @@ RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
 
 # Install global packages
+RUN npm install -g npm@3
 RUN npm install -g gulp grunt-cli bower
 
 # Clone Habitica repo and install dependencies
